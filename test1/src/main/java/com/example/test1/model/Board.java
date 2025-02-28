@@ -15,4 +15,5 @@ public class Board {
 	private String deleteYn;
 	private String cDateTime;
 	private String udateTime;
+	private String userName;
 }

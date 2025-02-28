@@ -17,6 +17,18 @@ public interface BoardMapper {
 
 
 	Board selectBoard(HashMap<String, Object> map);
+
+
+	void updateBoard(HashMap<String, Object> map);
+
+
+	void updateCnt(HashMap<String, Object> map);
+
+
+	void deleteBoard(HashMap<String, Object> map);
+
+
+
 	
 	
 

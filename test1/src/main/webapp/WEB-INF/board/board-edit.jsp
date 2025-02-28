@@ -17,7 +17,7 @@
             내용 : <textarea v-model="info.contents" cols="50" rows="20"></textarea>
        </div>
        <div>
-        <button @click="fnSave">저장</button>
+        <button @click="fnEdit">저장</button>
        </div>
 	</div>
 </body>
@@ -35,7 +35,8 @@
             fnGetBoard(){
 				var self = this;
 				var nparmap = {
-                        boardNo : self.boardNo
+                        boardNo : self.boardNo,
+                        option : "UPDATE"
                 };
 				$.ajax({
 					url:"/board/info.dox",
@@ -49,8 +50,23 @@
 					}
 				});
             },
-            fnSave : function(){
-                
+            fnEdit(){
+				var self = this;
+				var nparmap = 
+                self.info;      //인포안에 3개의 데이터 boardno title contents 가 있기 때문에
+                                //인포를 파람에 넣는다 
+				$.ajax({
+					url:"/board/edit.dox",
+					dataType:"json",	
+					type : "POST", 
+					data : nparmap,
+					success : function(data) { 
+						console.log(data);
+                            alert("저장되었습니다 ")
+                            location.href = "/board/list.do"
+                        
+					}
+				});
             }
         },
         mounted() {

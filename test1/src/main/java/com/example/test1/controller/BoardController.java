@@ -47,6 +47,8 @@ public class BoardController {
     }
 	
 	
+
+	
 	
 	//게시글 목록
 	@RequestMapping(value = "/board/list.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
@@ -87,6 +89,28 @@ public class BoardController {
 		resultMap = boardService.getBoard(map);
 		return new Gson().toJson(resultMap);     //맵을 제이선 형태로 바꿔서 리턴 해준다 
 	}
+	
+	//게시글 수정 
+	@RequestMapping(value = "/board/edit.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String boardEdit(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		
+		
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		
+		resultMap = boardService.editBoard(map);
+		return new Gson().toJson(resultMap);     //맵을 제이선 형태로 바꿔서 리턴 해준다 
+	}
+	//게시글 삭제 
+	@RequestMapping(value = "/board/remove.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String boardRemove(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap = boardService.boardRemove(map);  //삭제 버튼시 해당 사용자의 정보가 담겨있다 
+		return new Gson().toJson(resultMap);    
+	}
+	
+	
 	
 	
 }

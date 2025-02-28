@@ -12,44 +12,44 @@
 </style>
 <body>
 	<div id="app">
-       <div>제목 : <input v-model="title"> </div>
-       <div>
-            내용 : <textarea v-model="contents" cols="50" rows="20"></textarea>
-       </div>
-       <div>
-        <button @click="fnSave">저장</button>
-       </div>
+		<div>
+			아이디 : <input v-model="userId">  
+		</div>
+		<div>
+			비밀번호 : <input v-model="pwd">  
+		</div>
+		<button @click="fnLogin">로그인</button>
 	</div>
 </body>
 </html>
-<script> 
+<script>
     const app = Vue.createApp({
         data() {
             return {
-                title : "",
-                contents : "",
-                sessionId : "${sessionId}"
-              
+                userId : "",
+				pwd : ""
             };
         },
         methods: {
-            fnSave(){
+            fnLogin(){
 				var self = this;
 				var nparmap = {
-                    title :self.title,
-                    contents :self.contents,
-                    userId : self.sessionId
-                };
+					userId : self.userId,
+					pwd : self.pwd
+				};
 				$.ajax({
-					url:"/board/add.dox",
+					url:"/member/login.dox",     //이 주소는 컨트롤러에 있다 
 					dataType:"json",	
 					type : "POST", 
 					data : nparmap,
 					success : function(data) { 
 						console.log(data);
-                            alert("저장되었습니다 ")
-                            location.href = "/board/list.do"
-                        
+						if(data.result == "success"){
+							alert(data.member.userName + "님 환영 ");
+							location.href = "/board/list.do";
+						}else{
+							alert("실패")
+						}
 					}
 				});
             }
