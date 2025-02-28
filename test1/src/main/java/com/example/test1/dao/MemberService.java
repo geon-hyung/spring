@@ -27,7 +27,8 @@ public class MemberService {
 			System.out.println("성공");
 			session.setAttribute("sessionId", member.getUserId());             //세션에 아이디 값을 넣는다 
 			session.setAttribute("sessionName", member.getUserName());			//세션에 유저 네임을 넣는다 
-			
+//			session.setAttribute("sessionStatus", member.getStatus());			//세션에 유저 네임을 넣는다 
+			 
 			resultMap.put("member", member);
 			resultMap.put("result", "success");
 		}else {
