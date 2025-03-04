@@ -50,7 +50,8 @@
                     <td>
                        <a href="javascript:;" @click="fnView(item.boardNo)"> {{item.title}}</a>
                     </td>
-                    <td>{{item.userName}}</td>
+                    <td><a href="javascript:;" @click="fnInfo(item.boardNo)"> {{item.userName}} </a>
+                    </td>
                     <td>{{item.cnt}}</td>
                     <td>{{item.cDateTime}}</td>
                 </tr>
@@ -97,6 +98,24 @@
                 fnView: function(boardNo){
                     pageChange("/board/view.do",{boardNo : boardNo});
                 },
+
+                fnInfo : function(){
+                    var self = this;
+                    var nparmap = {
+                        keyword : self.keyword,
+                        searchOption : self.searchOption
+                    };
+                    $.ajax({
+                        url: "/board/list.dox",
+                        dataType: "json",
+                        type: "POST",
+                        data: nparmap,
+                        success: function (data) {
+                            console.log(data);
+                            self.list = data.list;
+                        }
+                    });
+                }
                 
             },
             mounted() {

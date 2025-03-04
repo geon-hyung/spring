@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import com.example.test1.mapper.MemberMapper;
 import com.example.test1.model.Member;
-import com.example.test1.model.User;
 
 @Service
 public class MemberService {
@@ -38,4 +37,30 @@ public class MemberService {
 		return resultMap;
 	}
 	//로성 로실 
+
+	public HashMap<String, Object> memberAdd(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		int num = MemberMapper.insertMember(map);
+		resultMap.put("result", "success");
+		//if num > 0 데이터 삽입 잘 된거 
+		// 아니면 뭔가 문제 있는것
+		return resultMap;
+	}
+
+	public HashMap<String, Object> memberCheck(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		Member member = MemberMapper.checkMember(map);
+		
+		int count = member != null ? 1 : 0 ;      //
+		resultMap.put("count", count);
+// 위에 표기한것과 같은 문법 널값인 경우 중복이 없음 
+//		if(member != null) {
+//			count = 1;
+//		}else {
+//			count = 0;
+//		}
+		return resultMap;
+	}
 }

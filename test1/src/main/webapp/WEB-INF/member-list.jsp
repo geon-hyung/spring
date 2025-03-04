@@ -34,7 +34,7 @@
 				</tr>
 				<tr v-for="item in list">
 					<td>{{item.userId}}</td>
-					<td>{{item.userName}}</td>
+					<td>{{item.userName}}</td></a>
 					<td>{{item.address}}</td>
 					<td><button @click="fnRemove(item.userId)">삭제</button></td>
 					<!--fnremove 라는 함수를 만들어서 파라미터로 pk를 보내준다 -->
